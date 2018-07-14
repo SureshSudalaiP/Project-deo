@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="cjs/index.js"></script>
+</head>
+<body ng-app="Assignmentapp" ng-controller="Assignmentcontroller">
+<div class="container">
+<div class="row">
+<div class="col-sm-6">
+<div  style="background-color:grey;color:white"><center><h1>List Master</h1><button class="btn btn-info pull-right" ng-click="addmodel()" id="add" >Add</button></center></div>
+<div></div>
+<div class="table-responsive">
+<table class="table table-bordered">
+<thead>
+<th>Name</th>
+<th>Description</th>
+<th>Amount</th>
+<th>Action</th>
+</thead>
+<tbody ng-init="listdetails()">
+<tr ng-repeat="x in listdetailsdata">
+<td>{{x.name}}</td>
+<td>{{x.description}}</td>
+<td>{{x.amount}}</td>
+<td><button class="btn btn-warning" id="update" ng-click="getdetails(x.assid);">Edit</button></td>
+
+
+</tr>
+</tbody>
+
+</table>
+</div>
+</div>
+<div class="col-sm-6" ng-if="updatemodel=='Add'">
+<div style="background-color:green;color:white"><center><h1>Add Assignment</h1></center></div>
+<form name="addassignment">
+<div class="form-group">
+<label>Name</label>
+
+<input type="text" class="form-control" ng-model="detailsdata.name">
+
+</div>
+<div class="form-group">
+<label >Description</label>
+
+<textarea class="form-control" ng-model="detailsdata.description"></textarea>
+
+</div>
+<div class="form-group">
+<label >Amount</label>
+
+<input type="number" class="form-control" ng-model="detailsdata.amount">
+
+</div>
+<button class="btn btn-success pull-right" ng-click="addassignmentdetails();">Add</button>
+</form>
+</div>
+<div class="col-sm-6" ng-if="updatemodel=='Edit'">
+<div style="background-color:green;color:white"><center><h1>Edit Assignment</h1></center></div>
+<form name="addassignment">
+<div class="form-group">
+<label>Name</label>
+
+<input type="text" class="form-control" ng-model="getdetailsdata[0].name">
+
+</div>
+<div class="form-group">
+<label >Description</label>
+
+<textarea class="form-control" ng-model="getdetailsdata[0].description"></textarea>
+
+</div>
+<div class="form-group">
+<label >Amount</label>
+
+<input type="number" class="form-control" ng-model="getdetailsdata[0].amount">
+
+</div>
+<button class="btn btn-success pull-right" ng-click="addassignmentdetails();">update</button>
+</form>
+</div>
+</div>
+</div>
+<select class="form-control" ng-model="enquirymasteradd.productid" ng-options="x.productid as x.productname for x in listproductmasterdata" >
+											<option value="">Select</option>
+										</select>
+
+
+</body>
+</html>
